@@ -3,16 +3,21 @@ import css from 'components/EditModal/EditModal.module.css';
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEditedContact } from 'redux/contactSlice';
-import { closeModal } from 'redux/contactSlice';
+import { getEditedContact } from 'redux/contacts/contactSlice';
+import { getContacts } from 'redux/contacts/contactSlice';
+import { closeModal } from 'redux/contacts/contactSlice';
 import { Formik, Form, Field } from 'formik';
-import { editContactThunk } from 'redux/operation';
+import { editContactThunk } from 'redux/contacts/contact-operation';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const modalRoot = document.querySelector('#modal-root');
 
 export const EditModal = () => {
   const dispatch = useDispatch();
   const { name, number, id } = useSelector(getEditedContact);
-
+  const contactsList = useSelector(getContacts);
   const initialValue = { name, number };
 
   useEffect(() => {
@@ -35,10 +40,18 @@ export const EditModal = () => {
   };
 
   const handleSubmit = editedContact => {
+    if (
+      contactsList.some(contact => {
+        return contact.name === editedContact.name;
+      })
+    ) {
+      toast.error(`${editedContact.name} is alredy in Phonebook `);
+      return;
+    }
     console.log('editedContact:', editedContact);
     editedContact.id = id;
     dispatch(editContactThunk(editedContact));
-    // toast.success(`${newContact.name} was added!`);
+    toast.success(`${editedContact.name} was change!`);
     dispatch(closeModal());
   };
 

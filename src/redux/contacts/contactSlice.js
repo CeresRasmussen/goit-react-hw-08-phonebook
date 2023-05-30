@@ -5,7 +5,7 @@ import {
   addContactThunk,
   deleteContactThunk,
   editContactThunk,
-} from './operation';
+} from './contact-operation';
 
 const contactInitialState = {
   contacts: [],
@@ -36,6 +36,7 @@ const contactSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.contacts = action.payload;
+        console.log('action.payload:', action.payload);
       })
       .addCase(fetchContactsThunk.rejected, (state, action) => {
         state.isLoading = false;

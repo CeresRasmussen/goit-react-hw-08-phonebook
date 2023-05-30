@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteContactThunk } from 'redux/operation';
-import { getFilter } from 'redux/sliceFilter';
-import { getContacts } from 'redux/contactSlice';
-import { openModal } from 'redux/contactSlice';
+import { deleteContactThunk } from 'redux/contacts/contact-operation';
+import { getFilter } from 'redux/filter/sliceFilter';
+import { getContacts } from 'redux/contacts/contactSlice';
+import { openModal } from 'redux/contacts/contactSlice';
 import { EditModal } from 'components/EditModal/EditModal';
 
-import { isShowModal } from 'redux/contactSlice';
+import { isShowModal } from 'redux/contacts/contactSlice';
 import css from 'components/Contacts/Contacts.module.css';
 import React from 'react';
 import { Notification } from 'components/Notification/Notification';

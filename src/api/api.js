@@ -1,25 +1,63 @@
 import axios from 'axios';
-const BASE_URL = 'https://646a3ced03bb12ac209d93c1.mockapi.io/contacts/';
-const HTTPClient = axios.create({
-  baseURL: BASE_URL,
-});
 
-const fetchContacts = (query = false) => {
-  const requestURL = query ? `/contacts/${query}` : '/contacts';
-  const request = HTTPClient.get(requestURL);
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+
+const fetchContacts = async () => {
+  const request = await axios
+    .get('/contacts')
+    .catch(e => console.log(e.request.response));
   return request;
 };
 
-const addContact = contact => {
-  return HTTPClient.post('/contacts', contact);
+const addContact = async contact => {
+  return await axios
+    .post('/contacts', contact)
+    .catch(e => console.log(e.request.response));
 };
 
-const deleteContactsById = contactId => {
-  return HTTPClient.delete(`/contacts/${contactId}`).catch(e => console.log(e));
+const deleteContactsById = async contactId => {
+  return await axios
+    .delete(`/contacts/${contactId}`)
+    .catch(e => console.log(e.request.response));
 };
-const editContactsById = ({ id, name, number }) => {
-  return HTTPClient.put(`/contacts/${id}`, { id, name, number }).catch(e =>
-    console.log(e)
-  );
+const editContactsById = async ({ id, name, number }) => {
+  return await axios
+    .put(`/contacts/${id}`, { id, name, number })
+    .catch(e => console.log(e.request.response));
 };
-export { fetchContacts, addContact, deleteContactsById, editContactsById };
+
+const registerNewUser = async newUser => {
+  console.log('newUser:', newUser);
+  return await axios
+    .post('/users/signup', newUser)
+    .catch(e => console.log(e.request.response));
+};
+
+const refreshCurrentUser = async () => {
+  return await axios
+    .get('/users/current')
+    .catch(e => console.log(e.request.response));
+};
+const logOutUser = async () => {
+  return await axios
+    .post('/users/logout')
+    .catch(e => console.log(e.request.response));
+};
+
+const logInUser = async user => {
+  console.log('User:', user);
+  return await axios
+    .post('/users/login', user)
+    .catch(e => console.log(e.request.response));
+};
+
+export {
+  fetchContacts,
+  addContact,
+  deleteContactsById,
+  editContactsById,
+  registerNewUser,
+  refreshCurrentUser,
+  logOutUser,
+  logInUser,
+};

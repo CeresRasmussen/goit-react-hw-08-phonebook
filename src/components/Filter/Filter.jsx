@@ -1,4 +1,4 @@
-import { setFilter, getFilter } from 'redux/sliceFilter';
+import { setFilter, getFilter } from 'redux/filter/sliceFilter';
 import { useDispatch, useSelector } from 'react-redux';
 import css from 'components/Filter/Filter.module.css';
 

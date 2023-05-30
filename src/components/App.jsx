@@ -1,39 +1,55 @@
-import React, { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { InputForm } from 'components/InputForm/InputForm';
-import { Contacts } from 'components/Contacts/Contacts';
-import { Filter } from 'components/Filter/Filter';
+import { Route, Routes } from 'react-router-dom';
+import PublicRoute from './PubliccRoute';
+import PrivateRoute from './PrivateRoute';
+import { refreshUser } from '../redux/auth//auth-operation';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { SharedLayout } from './SharedLayout/SharedLayout';
 
-import { fetchContactsThunk } from 'redux/operation';
+const Home = lazy(() => import('../pages/Home/Home'));
+const RegisterPage = lazy(() => import('../pages/SignUpPage/SignUpPage'));
+const LoginPage = lazy(() => import('../pages/LogInPage/LoginPage'));
+const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchContactsThunk());
+    dispatch(refreshUser());
+    // eslint-disable-next-line
   }, [dispatch]);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        width: '460px',
-        flexDirection: 'column',
-        padding: '20px',
-        justifyContent: 'center',
-        backgroundColor: '#212121',
-        color: '#010101',
-        gap: '30px',
-      }}
-    >
-      <InputForm></InputForm>
-      <Contacts>
-        <Filter></Filter>
-      </Contacts>
-      <ToastContainer autoClose={3000} theme="colored" />
-    </div>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute path="/contacts">
+              <RegisterPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute path="/contacts">
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute>
+              <ContactsPage />
+            </PrivateRoute>
+          }
+        />
+      </Route>
+    </Routes>
   );
 };

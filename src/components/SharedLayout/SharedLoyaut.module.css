@@ -1,0 +1,16 @@
+header {
+  background-color: #212121;
+  padding: 20px 20px 0 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 460px;
+}
+nav {
+  display: flex;
+  gap: 10px;
+}
+.auth-container {
+  display: flex;
+  gap: 10px;
+}

@@ -1,0 +1,10 @@
+.contact-container {
+  display: flex;
+  width: 460px;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+  background-color: #212121;
+  color: #010101;
+  gap: 30px;
+}

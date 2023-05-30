@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/contactSlice';
+import { getContacts } from 'redux/contacts/contactSlice';
 
-import { addContactThunk } from 'redux/operation';
+import { addContactThunk } from 'redux/contacts/contact-operation';
 
 import css from 'components/InputForm/InputForm.module.css';
 import { nanoid } from 'nanoid';
