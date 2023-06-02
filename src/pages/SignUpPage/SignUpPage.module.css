@@ -149,6 +149,7 @@ input::placeholder {
 }
 
 .link {
+  text-align: center;
   transition: color 250ms linear;
 }
 
