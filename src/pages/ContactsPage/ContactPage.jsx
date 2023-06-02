@@ -22,7 +22,7 @@ const ContactPage = () => {
       <Contacts>
         <Filter></Filter>
       </Contacts>
-      <ToastContainer autoClose={3000} theme="colored" />
+      <ToastContainer autoClose={3000} theme="dark" />
     </div>
   );
 };

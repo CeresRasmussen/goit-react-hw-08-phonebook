@@ -1,0 +1,20 @@
+.container {
+  width: 460px;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  background-color: #212121;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  text-align: center;
+}
+
+.title-span {
+  color: rgb(73, 156, 255);
+  display: flex;
+  align-items: center;
+}

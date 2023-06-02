@@ -11,6 +11,7 @@ import { editContactThunk } from 'redux/contacts/contact-operation';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ReactComponent as CLoseButton } from 'img/close-button.svg';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -60,7 +61,7 @@ export const EditModal = () => {
       <div className={css.Modal}>
         <Formik initialValues={initialValue} onSubmit={handleSubmit}>
           <Form className={css.form}>
-            <p className={css['form-title']}>Sign in to your account</p>
+            <p className={css['form-title']}>Edit contact</p>
             <div className={css['input-container']}>
               <label htmlFor="name" className={css.label}>
                 Name
@@ -77,11 +78,12 @@ export const EditModal = () => {
               Change
             </button>
             <button
+              className={css.close}
               type="button"
               name="close"
               onClick={() => dispatch(closeModal())}
             >
-              Close
+              <CLoseButton className={css.icon} />
             </button>
           </Form>
         </Formik>

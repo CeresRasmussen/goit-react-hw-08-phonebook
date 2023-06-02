@@ -59,7 +59,6 @@ export const Contacts = ({ children }) => {
                   title="Edit"
                   onClick={() => {
                     dispatch(openModal({ id, name, number }));
-                    console.log('isOpen:', isOpen);
                   }}
                 >
                   <svg

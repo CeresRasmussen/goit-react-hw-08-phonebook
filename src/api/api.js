@@ -21,8 +21,9 @@ const deleteContactsById = async contactId => {
     .catch(e => console.log(e.request.response));
 };
 const editContactsById = async ({ id, name, number }) => {
+  console.log('id, name, number:', id, name, number);
   return await axios
-    .put(`/contacts/${id}`, { id, name, number })
+    .patch(`/contacts/${id}`, { name, number })
     .catch(e => console.log(e.request.response));
 };
 
@@ -45,7 +46,6 @@ const logOutUser = async () => {
 };
 
 const logInUser = async user => {
-  console.log('User:', user);
   return await axios
     .post('/users/login', user)
     .catch(e => console.log(e.request.response));

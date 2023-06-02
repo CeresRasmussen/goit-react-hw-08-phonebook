@@ -12,7 +12,7 @@ const StyledLink = styled(NavLink)`
 }
 
   &.active {
-    color: gold;
+    color: rgb(73, 156, 255);
   }
 `;
 
@@ -22,17 +22,25 @@ export const SharedLayout = () => {
     <>
       <header>
         <nav>
-          <StyledLink to="/" end>
+          <StyledLink className={css['navigation-link']} to="/" end>
             Home
           </StyledLink>
-          {isLoggedIn && <StyledLink to="/contacts">Contacts</StyledLink>}
+          {isLoggedIn && (
+            <StyledLink className={css['navigation-link']} to="/contacts">
+              Contacts
+            </StyledLink>
+          )}
         </nav>
         {isLoggedIn ? (
           <UserMenu></UserMenu>
         ) : (
           <div className={css['auth-container']}>
-            <StyledLink to="/register">Register</StyledLink>
-            <StyledLink to="/logIn">Login</StyledLink>
+            <StyledLink className={css['navigation-link']} to="/register">
+              Register
+            </StyledLink>
+            <StyledLink className={css['navigation-link']} to="/logIn">
+              Login
+            </StyledLink>
           </div>
         )}
       </header>

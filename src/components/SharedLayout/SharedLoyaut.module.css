@@ -1,16 +1,31 @@
 header {
   background-color: #212121;
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px 10px 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 460px;
+  border-bottom: 1px solid white;
 }
+
 nav {
   display: flex;
   gap: 10px;
 }
+
 .auth-container {
   display: flex;
   gap: 10px;
+}
+
+.navigation-link {
+  transition: color 250ms linear;
+}
+
+.navigation-link:is(:hover, :focus) {
+  color: rgb(73, 156, 255);
+}
+
+.navigation-link.active {
+  color: rgb(73, 156, 255);
 }

@@ -36,7 +36,6 @@ const contactSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.contacts = action.payload;
-        console.log('action.payload:', action.payload);
       })
       .addCase(fetchContactsThunk.rejected, (state, action) => {
         state.isLoading = false;
@@ -73,7 +72,6 @@ const contactSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(editContactThunk.fulfilled, (state, { payload }) => {
-        console.log('action:', payload);
         state.isLoading = false;
         state.error = null;
         const index = state.contacts.findIndex(
