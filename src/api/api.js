@@ -21,14 +21,12 @@ const deleteContactsById = async contactId => {
     .catch(e => console.log(e.request.response));
 };
 const editContactsById = async ({ id, name, number }) => {
-  console.log('id, name, number:', id, name, number);
   return await axios
     .patch(`/contacts/${id}`, { name, number })
     .catch(e => console.log(e.request.response));
 };
 
 const registerNewUser = async newUser => {
-  console.log('newUser:', newUser);
   return await axios
     .post('/users/signup', newUser)
     .catch(e => console.log(e.request.response));

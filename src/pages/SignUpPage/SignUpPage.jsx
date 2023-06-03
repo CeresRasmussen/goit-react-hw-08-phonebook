@@ -37,7 +37,6 @@ const SignUpPage = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (newUser, { resetForm }) => {
-    console.log('newUser:', newUser);
     dispatch(register(newUser));
     resetForm();
   };

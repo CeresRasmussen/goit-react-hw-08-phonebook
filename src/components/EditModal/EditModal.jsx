@@ -49,10 +49,8 @@ export const EditModal = () => {
       toast.error(`${editedContact.name} is alredy in Phonebook `);
       return;
     }
-    console.log('editedContact:', editedContact);
     editedContact.id = id;
     dispatch(editContactThunk(editedContact));
-    toast.success(`${editedContact.name} was change!`);
     dispatch(closeModal());
   };
 
